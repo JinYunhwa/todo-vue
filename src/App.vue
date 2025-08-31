@@ -50,6 +50,6 @@ function addTodo() {
 }
 
 function removeTodo(id) {
-  todos.value = todos.value.fillter(todo => todo.id !== id)
+  todos.value = todos.value.filter(todo => todo.id !== id)
 }
 </script>
