@@ -4,20 +4,20 @@
     
     <div class="input-group mb-3">
       <input
+        v-model="newTodo"
         type="text"
         class="form-control"
         placeholder="할 일을 입력하세요"
       />
-      <button class="btn btn-primary">추가</button>
+      <button class="btn btn-primary" @click="addTodo">추가</button>
     </div>
 
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        예시 할 일 1
-        <button class="btn btn-sm btn-outline-danger">삭제</button>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        예시 할 일 2
+      <li 
+        v-for="todo in todos"
+        :key="todo.id"
+        class="list-group-item d-flex justify-content-between align-items-center">
+          {{ todo.title }}
         <button class="btn btn-sm btn-outline-danger">삭제</button>
       </li>
     </ul>
@@ -26,4 +26,21 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const todos = ref([])
+const newTodo = ref('')
+
+function addTodo() {
+  const text = newTodo.value.trim()
+  if (!text) return // 입력이 비어있을 경우, 무시
+
+  todos.value.push({
+    id: Date.now(), // 고유 ID (시간 값)
+    title: text,
+    completed: false // 생성시 완료되지 않은 상태
+  })
+
+  newTodo.value = '' // 목록에 추가한 뒤, 입력창을 비움
+}
 </script>
