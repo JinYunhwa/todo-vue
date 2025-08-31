@@ -41,10 +41,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 const todos = ref([])
 const newTodo = ref('')
+
+onMounted(() => {
+  loadTodos()
+})
+
+watch(todos, saveTodos, { deep: true })
 
 function addTodo() {
   const text = newTodo.value.trim()
@@ -67,6 +73,17 @@ function toggleTodo(id) {
   const todo = todos.value.find(t => t.id === id)
   if (todo) {
     todo.completed = !todo.completed
+  }
+}
+
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos.value))
+}
+
+function loadTodos() {
+  const data = localStorage.getItem('todos')
+  if (data) {
+    todos.value = JSON.parse(data)
   }
 }
 </script>
