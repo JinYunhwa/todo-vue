@@ -18,7 +18,12 @@
         :key="todo.id"
         class="list-group-item d-flex justify-content-between align-items-center">
           {{ todo.title }}
-        <button class="btn btn-sm btn-outline-danger">삭제</button>
+        <button
+          class="btn btn-sm btn-outline-danger"
+          @click="removeTodo(todo.id)"
+        >
+          삭제
+        </button>
       </li>
     </ul>
     
@@ -42,5 +47,9 @@ function addTodo() {
   })
 
   newTodo.value = '' // 목록에 추가한 뒤, 입력창을 비움
+}
+
+function removeTodo(id) {
+  todos.value = todos.value.fillter(todo => todo.id !== id)
 }
 </script>
