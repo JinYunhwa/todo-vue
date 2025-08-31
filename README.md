@@ -1,5 +1,36 @@
-# Vue 3 + Vite
+# Vue.js로 처음 만든 To-Do 리스트 앱
+Vue 3와 Vite, 그리고 Bootstrap을 이용해서 간단한 To-Do 리스트 앱을 만들었습니다.
+처음 Vue.js를 공부하면서 “무언가를 끝까지 만들어 본 경험”이 중요하다고 생각했고, 그중에서도 To-Do 리스트는 웹 개발의 기본 흐름(추가 → 표시 → 수정/삭제 → 저장)을 모두 담고 있어서 좋은 연습 프로젝트였습니다.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 프로젝트 목표
+- Vue 3 Composition API에 익숙해지기
+- 컴포넌트 구조 설계와 상태 관리 경험 쌓기
+- localStorage를 이용한 데이터 영속성 구현
+- GitHub Pages로 실제 배포까지 경험하기
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+# 개발 과정
+1. UI 뼈대 만들기
+- 제목 → 입력창 + 버튼 → 목록 영역 → 삭제 버튼을 순서대로 추가
+2. 기능 붙이기
+- ref([])로 todos 배열 상태 생성
+- v-model로 입력값을 상태와 연결
+- 버튼 클릭 시 새로운 todo 추가
+- 삭제 버튼으로 항목 제거
+- 체크박스로 완료 여부 토글
+3. 영속성 추가
+- onMounted로 앱 실행 시 저장된 데이터를 불러오기
+- watch를 이용해 todos 배열이 바뀔 때마다 localStorage에 저장
+4. 배포하기
+- GitHub Actions를 설정해서 main 브랜치에 push 시 자동으로 GitHub Pages 배포
+
+# 현재 구현된 기능
+- 할 일 추가 / 삭제
+- 완료 체크 및 스타일 변경 (취소선 + 회색 글씨)
+- localStorage를 통한 데이터 영속성
+- GitHub Pages 배포로 누구나 접속 가능
+
+# 앞으로의 계획
+- 필터링(전체/진행중/완료 보기)
+- 통계(총 개수, 완료율 등)
+- 완료 항목 일괄 삭제 or 보관
+- 모바일 UI 최적화
